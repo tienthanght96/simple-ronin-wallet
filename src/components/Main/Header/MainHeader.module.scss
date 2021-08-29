@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 0;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 1.9rem 0.6rem 1.2rem;
+  border-radius: 0.8rem;
+  background-color: $gray-1;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  font-weight: bold;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 0.8rem;
+    height: 0.8rem;
+    background-color: $blue-2;
+    border-radius: 50%;
+    margin-right: 1.2rem;
+  }
+}

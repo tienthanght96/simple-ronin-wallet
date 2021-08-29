@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  margin-top: auto;
+}
+
+.btn {
+  width: calc(50% - 0.8rem);
+}

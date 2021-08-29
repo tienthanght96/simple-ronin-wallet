@@ -1,0 +1,85 @@
+.container {
+  display: block;
+}
+
+.label {
+  font-size: 1rem;
+  line-height: 1.6rem;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  font-weight: bold;
+  text-align: left;
+  display: block;
+  margin-left: 0.8rem;
+  color: $gray-3;
+}
+
+.field {
+  position: relative;
+  padding: 1rem 1.6rem;
+  box-shadow: inset 0 0 0 0.1rem $gray-4;
+  border-radius: 0.8rem;
+  display: flex;
+  align-items: center;
+  transition: 0.3s box-shadow;
+
+  &.fieldFocus {
+    box-shadow: inset 0 0 0 0.1rem $blue-2;
+  }
+
+  &.fieldDisabled {
+    background: $gray-7;
+  }
+}
+
+.input {
+  appearance: none;
+  outline: none;
+  border: 0;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  display: block;
+  flex: 1;
+  background-color: transparent;
+}
+
+.iconPassword {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: block;
+    height: 90%;
+    width: 0.2rem;
+    background-color: #8f9bb3;
+    left: 1.2rem;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &.showPassword::before {
+    transform: rotate(45deg) translateY(0.1rem);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.prepend {
+  margin-right: 0.8rem;
+}
+
+.append {
+  margin-left: 0.8rem;
+}
+
+.error {
+  margin: 0.4rem 0;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  color: $red;
+  text-align: left;
+}

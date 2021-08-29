@@ -1,0 +1,52 @@
+.container {
+  height: 100%;
+  background-color: $white;
+  border-radius: 1.6rem;
+  overflow: hidden;
+}
+
+.popupContent {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 2.4rem 0 1.6rem 0;
+  margin-bottom: 0.8rem;
+  border-bottom: 0.1rem solid $gray-2;
+  position: relative;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  text-align: center;
+}
+
+.btnClose {
+  position: absolute;
+  right: 1.6rem;
+  bottom: 2rem;
+  top: 2rem;
+  padding: 0.2rem 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: $gray-1;
+    color: $blue-2;
+  }
+}
+
+.list {
+  overflow: auto;
+  max-height: 100%;
+}
+
+.item {
+  background-color: $white;
+}

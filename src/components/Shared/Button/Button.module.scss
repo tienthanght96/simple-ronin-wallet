@@ -1,0 +1,58 @@
+.button {
+  appearance: none;
+  outline: none;
+  box-shadow: none;
+  border: 0;
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  border-radius: 0.8rem;
+  padding: 1rem 2rem;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+
+  &.block {
+    width: 100%;
+  }
+
+  &.blue {
+    background: linear-gradient(256.28deg, $blue-1 0%, $blue-2 100%);
+    color: $white;
+
+    &:hover {
+      background: linear-gradient(76.28deg, $blue-1 0%, $blue-2 100%);
+    }
+  }
+
+  &.normal {
+    background-color: $gray-1;
+    color: $blue-2;
+
+    &:hover {
+      background-color: $gray-7;
+    }
+  }
+
+  &.transaprent {
+    background-color: transparent;
+  }
+
+  &.btnIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.xsIcon {
+    padding: 0.4rem;
+  }
+
+  &.mdIcon {
+    padding: 0.8rem;
+  }
+
+  svg * {
+    fill: currentColor;
+  }
+}

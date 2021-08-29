@@ -1,0 +1,48 @@
+.container {
+  padding: 2.5rem 2rem 2rem 2rem;
+  background-color: $white;
+}
+
+.content {
+  .field:not(:last-child) {
+    margin-bottom: 1.6rem;
+  }
+}
+
+.fromPrepend {
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  color: $gray-5;
+}
+
+.fromInput {
+  input {
+    color: $gray-5;
+  }
+}
+
+.amoutLabelContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.amountValue {
+  color: $dark-1;
+}
+
+.btnInput {
+  cursor: pointer;
+}
+
+.btnMax {
+  background: $gray-6;
+  border-radius: 0.8rem;
+  padding: 0.2rem 0.8rem;
+  font-size: 1rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: $gray-3;
+}

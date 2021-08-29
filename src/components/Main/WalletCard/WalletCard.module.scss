@@ -1,0 +1,52 @@
+.container {
+  background: linear-gradient(256.28deg, $blue-1 0%, $blue-2 100%);
+  border-radius: 1.6rem;
+  padding: 1.8rem 2rem 2rem;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.4rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 0.1rem solid $blue-4;
+}
+
+.title {
+  color: $white;
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 2rem;
+
+  span {
+    display: inline-block;
+    margin-left: 0.8rem;
+    color: $blue-3;
+    font-weight: 400;
+  }
+}
+
+.btn {
+  color: $white;
+}
+
+.content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.balance {
+  font-size: 3.2rem;
+  line-height: 4rem;
+  font-weight: 700;
+  color: $white;
+}
+
+.balanceConverted {
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  color: $blue-3;
+}
