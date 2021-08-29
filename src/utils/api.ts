@@ -1,9 +1,10 @@
 import fs from 'fs'
+import path from 'path'
 
 export const readJsonFile = async <T = string>(
   filename: string
 ): Promise<{ data: T | null }> => {
-  const filePath = `data/${filename}`
+  const filePath = path.join(process.cwd(), `data/${filename}`)
   try {
     const content = await fs.promises.readFile(filePath, { encoding: 'utf8' })
     return { data: content ? (JSON.parse(content) as T) : null }
