@@ -1,15 +1,15 @@
 import React from 'react'
 import classnames from 'classnames'
-import { BallanceModel } from '@/models/BalanceMode'
+import { BalanceModel } from '@/models/BalanceMode'
 import { CurrencyIcon } from '../CurrencyIcon'
 
 import styles from './AssetItem.module.scss'
 import { formatCurrency } from '@/utils/currency'
 
 interface Props {
-  balance: BallanceModel
+  balance: BalanceModel
   classNames?: string
-  onClick?: () => void
+  onClick?: (value: BalanceModel) => void
 }
 
 export const SharedAssetItem: React.FC<Props> = ({
@@ -17,8 +17,15 @@ export const SharedAssetItem: React.FC<Props> = ({
   balance,
   onClick,
 }) => {
+  const onClickItem = () => {
+    onClick && onClick(balance)
+  }
+
   return (
-    <div className={classnames(styles.container, classNames)} onClick={onClick}>
+    <div
+      className={classnames(styles.container, classNames)}
+      onClick={onClickItem}
+    >
       <div className={styles.icon}>
         <CurrencyIcon currency={balance.currency} width="32" height="32" />
       </div>

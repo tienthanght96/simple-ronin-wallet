@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { EnumCurrency } from '@/constants/currency'
 import USDIcon from '@/assets/icons/ic-usd.svg'
 import EurIcon from '@/assets/icons/ic-eur.svg'
@@ -13,7 +13,7 @@ export const CurrencyIcon: React.FC<Props> = ({
   className,
   ...props
 }) => {
-  const IconComponent = useMemo(() => {
+  const IconComponent = (() => {
     let icon: React.ReactNode = null
 
     switch (currency) {
@@ -32,7 +32,7 @@ export const CurrencyIcon: React.FC<Props> = ({
     }
 
     return icon
-  }, [])
+  })()
 
   return <React.Fragment>{IconComponent}</React.Fragment>
 }

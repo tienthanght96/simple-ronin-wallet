@@ -30,6 +30,9 @@
   &.fieldDisabled {
     background: $gray-7;
   }
+  &.fieldError {
+    box-shadow: inset 0 0 0 0.1rem $red;
+  }
 }
 
 .input {
@@ -43,6 +46,16 @@
   display: block;
   flex: 1;
   background-color: transparent;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
 }
 
 .iconPassword {

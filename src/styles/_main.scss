@@ -1,5 +1,5 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
-
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
 @import './fonts';
 
 a {
@@ -8,7 +8,7 @@ a {
 
 body,
 html {
-  font-family: 'SF Pro Text';
+  font-family: 'SF Pro Text', 'Source Sans Pro', sans-serif;
   color: $dark-1;
   font-size: 10px;
 }
@@ -28,11 +28,18 @@ button {
 
 #__next {
   height: 60rem;
-  width: 37.5rem;
-  margin: 10rem auto;
+  width: 40rem;
+  margin: auto;
   border: 0.1rem solid rgba($gray-2, 0.7);
   border-radius: 0.4rem;
   position: relative;
+
+  @include breakpoint-mobile {
+    height: 100vh !important;
+    width: 100vw !important;
+    margin: 0 !important;
+    border: 0 !important;
+  }
 }
 
 ::-webkit-scrollbar {

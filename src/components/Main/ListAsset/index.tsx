@@ -1,14 +1,17 @@
 import React from 'react'
 import { SharedAssetItem } from '@/components/Shared/AssetItem'
+import { BalanceModel } from '@/models/BalanceMode'
 import styles from './MainListAsset.module.scss'
-import { BalancesMock } from '@/constants/mock'
+interface Props {
+  balances: BalanceModel[]
+}
 
-export const MainListAsset = () => {
+export const MainListAsset: React.FC<Props> = ({ balances }) => {
   return (
     <div className={styles.container}>
       <div className={styles.title}>Assets</div>
       <div className={styles.list}>
-        {BalancesMock.map((balance) => (
+        {balances?.map((balance) => (
           <SharedAssetItem
             key={balance.id}
             balance={balance}

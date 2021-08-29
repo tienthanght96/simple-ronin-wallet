@@ -20,7 +20,8 @@ Login.getInitialProps = async (ctx: NextPageContext) => {
       Router.push(AppRoutes.Home)
     }
   }
-  return {}
+
+  return { token }
 }
 
 export default Login

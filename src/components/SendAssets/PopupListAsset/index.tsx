@@ -2,20 +2,30 @@ import React from 'react'
 import { SharedButton } from '@/components/Shared/Button'
 import { SharedPopup } from '@/components/Shared/Popup'
 import { SharedAssetItem } from '@/components/Shared/AssetItem'
+import { useBalances } from '@/context/GlobalData'
+import { BalanceModel } from '@/models/BalanceMode'
 import CloseIcon from '@/assets/icons/ic-close.svg'
 
 import styles from './PopupListAsset.module.scss'
-import { BalancesMock } from '@/constants/mock'
 
 interface Props {
   isOpen: boolean
   onClose: () => void
+  onSelect: (balance: BalanceModel) => void
 }
 
-export const PopupListAsset: React.FC<Props> = ({ isOpen, onClose }) => {
-  const onSelect = () => {
+export const PopupListAsset: React.FC<Props> = ({
+  isOpen,
+  onClose,
+  onSelect,
+}) => {
+  const onClickSelect = (balance: BalanceModel) => {
     onClose()
+    onSelect(balance)
   }
+
+  const balances = useBalances()
+
   return (
     <SharedPopup isOpen={isOpen} contentClassName={styles.popupContent}>
       <div className={styles.container}>
@@ -30,12 +40,12 @@ export const PopupListAsset: React.FC<Props> = ({ isOpen, onClose }) => {
           </SharedButton>
         </div>
         <div className={styles.list}>
-          {BalancesMock.map((balance) => (
+          {balances?.map((balance) => (
             <SharedAssetItem
               key={balance.id}
               balance={balance}
               classNames={styles.item}
-              onClick={onSelect}
+              onClick={onClickSelect}
             />
           ))}
         </div>

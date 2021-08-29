@@ -15,7 +15,9 @@
       "@/services/*": ["src/services/*"],
       "@/hocs/*": ["src/hocs/*"],
       "@/views/*": ["src/views/*"],
-      "@/database/*": ["/server/database/*"]
+      "@/context/*": ["src/context/*"],
+      "@/data/*": ["data/*"],
+      "@/hooks/*": ["src/hooks/*"]
     },
     "moduleResolution": "node",
     "strict": true,

@@ -3,3 +3,26 @@
   overflow-y: auto;
   padding: 0 2rem;
 }
+
+.header {
+  position: absolute;
+  top: -8rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  @include breakpoint-mobile {
+    display: none;
+  }
+}
+
+.headingContent {
+  font-size: 3.2rem;
+  line-height: 4rem;
+  font-weight: 600;
+  display: inline-block;
+  color: $white;
+  padding: 1rem 6rem;
+  margin-left: 2rem;
+  background: linear-gradient(256.28deg, $blue-1 0%, $blue-2 100%);
+  clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+}

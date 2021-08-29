@@ -71,6 +71,7 @@ export const ShareInputField: React.FC<Props> = ({
       <div
         className={classnames(styles.field, {
           [styles.fieldFocus]: isFocus,
+          [styles.fieldError]: error,
           [styles.fieldDisabled]: props.disabled,
         })}
       >

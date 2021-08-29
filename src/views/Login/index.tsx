@@ -10,13 +10,21 @@ import styles from './Login.module.scss'
 
 export const LoginView = () => {
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (error) {
+      setError('')
+    }
     setPassword(event.target.value)
   }
 
   const onSubmit = (event: React.FormEvent) => {
     event.preventDefault()
+    if (password.trim().length < 1) {
+      setError('Password is required!')
+      return
+    }
     login({ token: 'my_token' })
   }
 
@@ -35,7 +43,7 @@ export const LoginView = () => {
             label="enter password"
             type="password"
             name="password"
-            error="Password is required!"
+            error={error}
             value={password}
             onChange={onChange}
           />

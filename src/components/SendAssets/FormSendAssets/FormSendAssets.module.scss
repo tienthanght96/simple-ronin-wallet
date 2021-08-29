@@ -14,6 +14,7 @@
   font-size: 1.4rem;
   line-height: 2rem;
   color: $gray-5;
+  white-space: nowrap;
 }
 
 .fromInput {
@@ -34,6 +35,8 @@
 
 .btnInput {
   cursor: pointer;
+  position: relative;
+  z-index: 2;
 }
 
 .btnMax {

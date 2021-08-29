@@ -18,6 +18,10 @@ export const Layout: React.FC<Props> = ({ children, title, className }) => {
       <Head>
         <title>{title ? `${title} | Robin Wallet` : 'Robin Wallet'}</title>
       </Head>
+      <header className={styles.header}>
+        <div className={styles.headingContent}>Ronin Wallet</div>
+      </header>
+
       <main className={classnames(styles.container, className)}>
         {children}
       </main>

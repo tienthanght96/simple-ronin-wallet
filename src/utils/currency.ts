@@ -16,11 +16,11 @@ export const convertCurrency = ({
     return 0
   }
 
-  return amount * rate
+  return Number((amount * rate).toFixed(4))
 }
 
 export const formatCurrency = (amount?: number, separate = ',') => {
-  const str = amount ? String(amount) : ''
+  const str = typeof amount === 'number' && amount >= 0 ? String(amount) : ''
 
   if (!str) {
     return ''
@@ -28,5 +28,15 @@ export const formatCurrency = (amount?: number, separate = ',') => {
 
   const regex = /\B(?=(\d{3})+(?!\d))/g
   const result = str.replace(regex, separate)
+  return result
+}
+
+export const formatAccountNumber = (payload?: string, separate = ' ') => {
+  if (!payload) {
+    return ''
+  }
+
+  const regex = /\B(?=(\w{4})+(?!\w))/g
+  const result = payload.replace(regex, separate)
   return result
 }
