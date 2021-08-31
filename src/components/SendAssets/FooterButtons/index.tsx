@@ -6,7 +6,7 @@ import { SharedButton } from '@/components/Shared/Button'
 import styles from './FooterButtons.module.scss'
 
 interface Props {
-  loading?: boolean
+  loading: boolean
   onSend: () => void
 }
 

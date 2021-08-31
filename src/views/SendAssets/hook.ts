@@ -12,7 +12,7 @@ export const useSendAssetsViewHook = () => {
   const dispatch = useAppDispatch()
   const [requestStatus, setRequestStatus] = useState<
     'none' | 'loading' | 'done' | 'failed'
-  >('loading')
+  >('none')
   const [isOpenPopupListAsset, setIsOpenPopupListAsset] = useState(false)
   const [isOpenPopupSuccess, setIsOpenPopupSuccess] = useState(false)
   const [form, setForm] = useState<FormSendAssetsModel>({
@@ -110,7 +110,16 @@ export const useSendAssetsViewHook = () => {
         balance?.id as number,
         amountNumber
       )
-      dispatch(updateBalancesAction(data))
+      dispatch(
+        updateBalancesAction(
+          balances.map((bal) => {
+            if (bal.id === balance?.id) {
+              return data
+            }
+            return bal
+          })
+        )
+      )
       setRequestStatus('done')
       setForm({
         amount: '',

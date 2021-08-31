@@ -1,12 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { writeJsonFile } from '@/utils/api'
 import { DefaultMyBalances } from '@/constants/balances'
+import BalanceSchema from '@/models/BalanceSchema'
+import { BalanceModel } from '@/models/BalanceMode'
 
 export default async function resetBalancesHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const reqMethod = String(req.method).toUpperCase()
+
+  DefaultMyBalances
 
   if (reqMethod !== 'POST') {
     return res.status(400).json({
@@ -15,11 +18,21 @@ export default async function resetBalancesHandler(
       message: 'Invalid method!',
     })
   }
-  const updateResponse = await writeJsonFile('balances.json', DefaultMyBalances)
+  try {
+    const balances = (await BalanceSchema.find()) as BalanceModel[]
 
-  if (updateResponse.data) {
-    return res.status(200).json({ data: DefaultMyBalances, status: 'success' })
-  } else {
+    if (!balances || balances.length < 1) {
+      return res.status(400).json({
+        data: null,
+        status: 'error',
+        message: 'Could not reset your balances!',
+      })
+    }
+
+    await BalanceSchema.updateMany({}, { $set: { amount: 500 } })
+    const updatedBalances = (await BalanceSchema.find()) as BalanceModel[]
+    return res.status(200).json({ data: updatedBalances, status: 'success' })
+  } catch (error) {
     return res.status(400).json({
       data: null,
       status: 'error',

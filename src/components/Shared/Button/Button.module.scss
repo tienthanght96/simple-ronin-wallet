@@ -11,6 +11,7 @@
   display: inline-block;
   cursor: pointer;
   transition: 0.3s all ease-in-out;
+  position: relative;
 
   &.block {
     width: 100%;
@@ -20,7 +21,7 @@
     background: linear-gradient(256.28deg, $blue-1 0%, $blue-2 100%);
     color: $white;
 
-    &:hover {
+    &:not(.loading):hover {
       background: linear-gradient(76.28deg, $blue-1 0%, $blue-2 100%);
     }
   }
@@ -52,7 +53,51 @@
     padding: 0.8rem;
   }
 
+  &.loading {
+    &:before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      display: block;
+      border-radius: inherit;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+      content: '';
+      pointer-events: none;
+    }
+
+    &.blue::before {
+      background-color: $white;
+    }
+    &.blue svg * {
+      fill: $blue-1;
+    }
+  }
+
+  .loadingIconWraper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    svg {
+      animation: loading 1s infinite linear;
+    }
+  }
+
   svg * {
     fill: currentColor;
+  }
+  @keyframes loading {
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }

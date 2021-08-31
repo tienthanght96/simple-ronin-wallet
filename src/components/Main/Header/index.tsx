@@ -50,7 +50,7 @@ export const MainHeader = () => {
     logout()
     setTimeout(() => {
       dispatch(logoutAction())
-    }, 50)
+    }, 100)
   }
 
   return (

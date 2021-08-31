@@ -38,10 +38,11 @@ export const SendAssetsView: React.FC<Props> = ({}) => {
           onChange={onChangeInputFields}
           openListAsset={onOpenPopupListAsset}
         />
-        <FooterButtons onSend={onSend} />
+        <FooterButtons loading={requestStatus === 'loading'} onSend={onSend} />
       </div>
       <PopupListAsset
         isOpen={isOpenPopupListAsset}
+        selectBalance={form.balance}
         onSelect={onSelectBalance}
         onClose={onClosePopupListAsset}
       />

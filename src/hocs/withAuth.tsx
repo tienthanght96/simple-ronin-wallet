@@ -11,6 +11,10 @@ import {
   getGlobalDataStartedAction,
 } from '@/context/actions'
 import { compiledBalanceModels } from '@/utils/balances'
+import { SharedPopup } from '@/components/Shared/Popup'
+import LoadingIcon from '@/assets/icons/ic-btn-loading.svg'
+
+import styles from './WithAuth.module.scss'
 
 const getGlobalData = (
   payload: Pick<
@@ -64,7 +68,22 @@ export const withAuth = (WrappedComponent: NextPage) => {
         dispatch(getGlobalDataFailedAction())
       }
     }
-    return <WrappedComponent {...props} />
+    return (
+      <React.Fragment>
+        <WrappedComponent {...props} />
+        <SharedPopup
+          backdropClassname={styles.backdrop}
+          contentClassName={styles.popupContent}
+          isOpen={appState.status === 'loading'}
+        >
+          <div className={styles.popupBody}>
+            <LoadingIcon width="24" height="24" />
+            <br />
+            Loading...
+          </div>
+        </SharedPopup>
+      </React.Fragment>
+    )
   }
 
   PageWrapper.getInitialProps = async (ctx: NextPageContext) => {

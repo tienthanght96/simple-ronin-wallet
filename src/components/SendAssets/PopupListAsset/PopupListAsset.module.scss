@@ -50,3 +50,7 @@
 .item {
   background-color: $white;
 }
+
+.activeItem {
+  background-color: rgba($gray-4, 0.3);
+}

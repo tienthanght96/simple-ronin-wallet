@@ -1,4 +1,5 @@
 import React from 'react'
+import classnames from 'classnames'
 import { SharedButton } from '@/components/Shared/Button'
 import { SharedPopup } from '@/components/Shared/Popup'
 import { SharedAssetItem } from '@/components/Shared/AssetItem'
@@ -9,12 +10,14 @@ import CloseIcon from '@/assets/icons/ic-close.svg'
 import styles from './PopupListAsset.module.scss'
 
 interface Props {
+  selectBalance: BalanceModel | null
   isOpen: boolean
   onClose: () => void
   onSelect: (balance: BalanceModel) => void
 }
 
 export const PopupListAsset: React.FC<Props> = ({
+  selectBalance,
   isOpen,
   onClose,
   onSelect,
@@ -44,7 +47,9 @@ export const PopupListAsset: React.FC<Props> = ({
             <SharedAssetItem
               key={balance.id}
               balance={balance}
-              classNames={styles.item}
+              classNames={classnames(styles.item, {
+                [styles.activeItem]: selectBalance?.id === balance.id,
+              })}
               onClick={onClickSelect}
             />
           ))}

@@ -1,22 +1,21 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { readJsonFile } from '@/utils/api'
 import { BalanceModel } from '@/models/BalanceMode'
+import { dbConnect } from '@/utils/database'
+import BalanceSchema from '@/models/BalanceSchema'
 
 export default async function balancesHandler(
   _req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { data } = await readJsonFile<BalanceModel[]>('balances.json')
-
+  await dbConnect()
+  const data = (await BalanceSchema.find()) as BalanceModel[]
   if (data) {
-    return res.status(200).json({ data, status: 'success' })
+    return res.status(200).json({ data: data, status: 'success' })
   } else {
-    return res
-      .status(400)
-      .json({
-        data: null,
-        status: 'error',
-        message: 'Could not get your balances!',
-      })
+    return res.status(400).json({
+      data: null,
+      status: 'error',
+      message: 'Could not get your balances!',
+    })
   }
 }

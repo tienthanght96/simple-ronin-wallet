@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import classnames from 'classnames'
 import Link, { LinkProps } from 'next/link'
+import LoadingIcon from '@/assets/icons/ic-btn-loading.svg'
 
 import styles from './Button.module.scss'
 
@@ -62,6 +63,14 @@ export const SharedButton: React.FC<Props> = ({
     onClick && onClick(event)
   }
 
+  const IconLoading = useMemo(() => {
+    return loading ? (
+      <span className={styles.loadingIconWraper}>
+        <LoadingIcon className={styles.loadingIcon} />
+      </span>
+    ) : null
+  }, [loading])
+
   if (href) {
     return (
       <Link href={href} as={as} prefetch={prefetch}>
@@ -70,6 +79,7 @@ export const SharedButton: React.FC<Props> = ({
           {...(props as ButtonLinkProps)}
           onClick={onClickButton}
         >
+          {IconLoading}
           {children}
         </a>
       </Link>
@@ -78,6 +88,7 @@ export const SharedButton: React.FC<Props> = ({
 
   return (
     <button className={classNames} {...props} onClick={onClickButton}>
+      {IconLoading}
       {children}
     </button>
   )

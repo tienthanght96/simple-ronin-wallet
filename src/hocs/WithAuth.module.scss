@@ -1,0 +1,33 @@
+.backdrop {
+  backdrop-filter: blur(2px);
+  backdrop-filter: brightness(50%);
+  background-color: rgba($gray-3, 0.8);
+}
+
+.popupContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popupBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  color: $white;
+
+  @keyframes loading {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  svg {
+    animation: loading 1s infinite linear;
+    display: inline-block;
+    margin-left: -2rem;
+  }
+}

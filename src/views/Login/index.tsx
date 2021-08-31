@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { Layout } from '@/components/Layout'
 import { ShareInputField } from '@/components/Shared/Input'
 import { SharedButton } from '@/components/Shared/Button'
@@ -11,6 +11,7 @@ import styles from './Login.module.scss'
 export const LoginView = () => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const CORRECT_PASSWORD = useMemo(() => '1234', [])
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (error) {
@@ -23,6 +24,11 @@ export const LoginView = () => {
     event.preventDefault()
     if (password.trim().length < 1) {
       setError('Password is required!')
+      return
+    }
+
+    if (password.trim() !== CORRECT_PASSWORD) {
+      setError('Incorrect password!')
       return
     }
     login({ token: 'my_token' })

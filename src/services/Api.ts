@@ -35,7 +35,7 @@ export class ApiService {
   }
 
   static sendAssets(balanceId: number, amount: number) {
-    return ApiService.instance.put<BalanceModel[]>(
+    return ApiService.instance.put<BalanceModel>(
       Endpoints.UpdateDetailBalance.replace(
         '{balanceId}',
         balanceId.toString()

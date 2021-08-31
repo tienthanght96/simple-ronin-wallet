@@ -1,18 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { readJsonFile, writeJsonFile } from '@/utils/api'
 import { BalanceModel } from '@/models/BalanceMode'
+import BalanceSchema from '@/models/BalanceSchema'
 
 export default async function updateBalanceHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { data: balances } = await readJsonFile<BalanceModel[]>('balances.json')
   const reqMethod = String(req.method).toUpperCase()
   const { amount } = req.body
-  const balanceId = parseInt(req.query?.id as string)
-  const balanceIndex = balances
-    ? balances.findIndex((balance) => balance.id === balanceId)
-    : -1
+  const balanceId = req.query?.id as string
+  const balance = await BalanceSchema.findById(balanceId)
 
   if (reqMethod !== 'PUT') {
     return res.status(400).json({
@@ -22,7 +19,7 @@ export default async function updateBalanceHandler(
     })
   }
 
-  if (balanceIndex < 0 || !amount) {
+  if (!balanceId || !amount) {
     return res.status(400).json({
       data: null,
       status: 'error',
@@ -30,7 +27,7 @@ export default async function updateBalanceHandler(
     })
   }
 
-  if (!balances) {
+  if (!balance) {
     return res.status(400).json({
       data: null,
       status: 'error',
@@ -38,21 +35,13 @@ export default async function updateBalanceHandler(
     })
   }
 
-  const updatedBalance = {
-    ...balances[balanceIndex],
-    amount: balances[balanceIndex].amount - amount,
-  }
+  await BalanceSchema.findByIdAndUpdate(balanceId, {
+    amount: balance.amount - amount,
+  })
+  const data = (await BalanceSchema.findById(balanceId)) as BalanceModel
 
-  const updatedBalances = [
-    ...balances.slice(0, balanceIndex),
-    updatedBalance,
-    ...balances.slice(balanceIndex + 1),
-  ]
-
-  const updateResponse = await writeJsonFile('balances.json', updatedBalances)
-
-  if (updateResponse.data) {
-    return res.status(200).json({ data: updatedBalances, status: 'success' })
+  if (data) {
+    return res.status(200).json({ data: data, status: 'success' })
   } else {
     return res.status(400).json({
       data: null,

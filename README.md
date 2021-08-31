@@ -2,6 +2,16 @@
 
 ### Live Demo: https://simple-ronin-wallet.vercel.app/
 
+### How to test
+
+When accessing web app, if you don't login you need to unlock/login account by enter password **1234**. After logged in you can view account info, balances, send assets, reset balances, logout.
+
+### Implement requirements
+
+1. Login/Logout
+2. REST API for GET Exchange Rate, GET Accoount, GET Balances, UPDATE Balances
+3. UI Login/Homepage/Send Assets
+
 Run following commands to run project on your local machine
 
 ###### Install dependencies
@@ -20,6 +30,13 @@ npm run dev
 yarn dev
 ```
 
+### Technologies
+
+- **NextJS + Typescript**
+- **React Context API**
+- **SCSS**
+- **Mongoose**
+
 ### App Structure: <br>
 
 ```
@@ -33,7 +50,6 @@ my-app
 ├── tsconfig.json
 ├── tsconfig.server.json
 ├── .gitignore
-├── data - JSON files store data to use create REST API
 ├── pages
 │     ── api - REST API to communicate between backend & front-end
 │          ── balances
@@ -63,7 +79,7 @@ my-app
 
       ── hooks - All custom react hooks
 
-      ── models - Interfaces model definition
+      ── models - Models definition
 
       ── services - API services to call api request
 
@@ -74,15 +90,10 @@ my-app
             ── auth - Utilities functions authentication
             ── balances - Including function convert response from api to model has been defined in client
             ── currency - Utilities functions convert/format curency
+            ── database - Functions connect to MongoDB
 
       ── views
             ── Login - View for login page
             ── Main - View for homepage
             ── SendAssets - View for send assets page
 ```
-
-### Technologies <br>
-
-- **NextJS + Typescript**
-- **React Context API**
-- **SCSS**

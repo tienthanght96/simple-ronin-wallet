@@ -1,29 +1,25 @@
-import fs from 'fs'
-import path from 'path'
+import { VercelRequest, VercelResponse } from '@vercel/node'
 
-export const readJsonFile = async <T = string>(
-  filename: string
-): Promise<{ data: T | null }> => {
-  const filePath = path.join(process.cwd(), `data/${filename}`)
-  try {
-    const content = await fs.promises.readFile(filePath, { encoding: 'utf8' })
-    return { data: content ? (JSON.parse(content) as T) : null }
-  } catch (error) {
-    return { data: null }
-  }
-}
+import Cors from 'cors'
 
-export const writeJsonFile = async <T>(
-  filename: string,
-  data: T
-): Promise<{ data: T | null }> => {
-  const filePath = `data/${filename}`
-  try {
-    await fs.promises.writeFile(filePath, JSON.stringify(data), {
-      encoding: 'utf8',
+type CorsType = (
+  req: Cors.CorsRequest,
+  res: {
+    statusCode?: number | undefined
+    setHeader(key: string, value: string): any
+    end(): any
+  },
+  next: (err?: any) => any
+) => void
+
+export const initMiddleware = (middleware: CorsType) => {
+  return (req: VercelRequest, res: VercelResponse) =>
+    new Promise((resolve, reject) => {
+      middleware(req, res, (result) => {
+        if (result instanceof Error) {
+          return reject(result)
+        }
+        return resolve(result)
+      })
     })
-    return { data }
-  } catch (error) {
-    return { data: null }
-  }
 }
