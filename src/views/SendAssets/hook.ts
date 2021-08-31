@@ -1,13 +1,18 @@
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { updateBalancesAction } from '@/context/actions'
 import { useAppDispatch, useBalances } from '@/context/GlobalData'
 import { BalanceModel } from '@/models/BalanceMode'
 import { FormSendAssetsModel } from '@/models/SendAssetsModel'
 import { ApiService } from '@/services/Api'
-import { useEffect, useState } from 'react'
 
 type FormErrors = Map<keyof FormSendAssetsModel, string>
 
 export const useSendAssetsViewHook = () => {
+  const router = useRouter()
+
+  const balanceId = router.query?.balanceId as string
+
   const balances = useBalances()
   const dispatch = useAppDispatch()
   const [requestStatus, setRequestStatus] = useState<
@@ -24,12 +29,15 @@ export const useSendAssetsViewHook = () => {
 
   useEffect(() => {
     if (balances.length > 0 && !form.balance) {
+      const selectedBalance =
+        balances.find((bal) => bal.id === balanceId) || balances[0] || null
+
       setForm((prev) => ({
         ...prev,
-        balance: balances[0],
+        balance: selectedBalance,
       }))
     }
-  }, [balances])
+  }, [balances, balanceId])
 
   const onOpenPopupListAsset = () => {
     setIsOpenPopupListAsset(true)
@@ -107,7 +115,7 @@ export const useSendAssetsViewHook = () => {
     setRequestStatus('loading')
     try {
       const { data } = await ApiService.sendAssets(
-        balance?.id as number,
+        balance?.id as string,
         amountNumber
       )
       dispatch(

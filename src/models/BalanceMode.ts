@@ -1,7 +1,8 @@
 export interface BalanceModel {
-  id: number
+  id: string
   amount: number
   currency: string
+  name: string
   convertedAmount?: number
   convertedCurrency?: string
 }

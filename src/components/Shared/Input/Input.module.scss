@@ -20,6 +20,7 @@
   box-shadow: inset 0 0 0 0.1rem $gray-4;
   border-radius: 0.8rem;
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   transition: 0.3s box-shadow;
 
@@ -44,8 +45,9 @@
   font-size: 1.4rem;
   line-height: 2rem;
   display: block;
-  flex: 1;
+  width: 4rem;
   background-color: transparent;
+  flex: 1;
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {

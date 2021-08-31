@@ -1,0 +1,12 @@
+.container {
+  position: relative;
+}
+
+.bg {
+  position: absolute;
+  top: 2.4rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}

@@ -6,11 +6,12 @@ import { logout } from '@/utils/auth'
 import { logoutAction, updateBalancesAction } from '@/context/actions'
 import { ApiService } from '@/services/Api'
 import { SharedPopupMessage } from '@/components/Shared/PopupMessage'
-
 import IconAccount from '@/assets/icons/ic-account.svg'
-import styles from './MainHeader.module.scss'
+import styles from './AppHeader.module.scss'
+import Link from 'next/link'
+import { AppRoutes } from '@/constants/routes'
 
-export const MainHeader = () => {
+export const SharedAppHeader = () => {
   const refRightElement = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [popupResetStatus, setPopupResetStatus] = useState<
@@ -55,7 +56,9 @@ export const MainHeader = () => {
 
   return (
     <header className={styles.container}>
-      <div className={styles.heading}>Ronin Wallet</div>
+      <Link href={AppRoutes.Home}>
+        <a className={styles.heading}>Ronin Wallet</a>
+      </Link>
       <div className={styles.right} ref={refRightElement}>
         <SharedButton variant="normal" iconSize="xs" onClick={onToggleMenu}>
           <IconAccount width="24" height="24" />

@@ -9,12 +9,12 @@ When accessing web app, if you don't login you need to unlock/login account by e
 ### Implement requirements
 
 1. Login/Logout
-2. REST API for GET Exchange Rate, GET Accoount, GET Balances, UPDATE Balances
-3. UI Login/Homepage/Send Assets
+2. REST API for GET Exchange Rate, GET Accoount, GET Detail Balance, GET Balances, UPDATE Balances
+3. UI Login/Homepage/Send Assets/Balance Detail
 
 Run following commands to run project on your local machine
 
-###### Install dependencies
+##### Install dependencies
 
 ```bash
 npm i
@@ -22,7 +22,7 @@ npm i
 yarn
 ```
 
-###### Run development enviroment
+##### Run development enviroment
 
 ```bash
 npm run dev
@@ -35,7 +35,7 @@ yarn dev
 - **NextJS + Typescript**
 - **React Context API**
 - **SCSS**
-- **Mongoose**
+- **MongDB**
 
 ### App Structure: <br>
 
@@ -53,15 +53,16 @@ my-app
 ├── pages
 │     ── api - REST API to communicate between backend & front-end
 │          ── balances
-│               ── [id].ts - [API] Update single ballance
-│               ── index.ts - [API] Get all ballances
-│               ── reset.ts - [API] Reset ballances to default value
+│               ── [id].ts - [API] Get/Update single ballance
+│               ── index.ts - [API] Get all balances
+│               ── reset.ts - [API] Reset balances to default value
 │           ── account.ts: [API] Get account information
 │           ── exchange-rates.ts - [API] Get exchange rates
 │     ── _app.tsx.ts - Custom NextJS App
 │     ── index.tsx - Homepage
 │     ── login.tsx - Login page/Unlock page
 │     ── send-assets.tsx - Send Assets page
+│     ── balance.tsx - Balance detail page
 ├── server - Custom server NextJS
 └── src
       ── assets - Includes: images, icons, fonts
@@ -73,7 +74,7 @@ my-app
             ── Shared - All base components: Input, Button, Popup, ..
       ── constants - Define const variables
 
-      ── context - Define app state using React Context API includes: account info, ballances, exchange rates
+      ── context - Define app state using React Context API includes: account info, balances, exchange rates
 
       ── hocs - High order components for authentication and get app state when first load app
 
@@ -86,7 +87,6 @@ my-app
       ── styles - SCSS
 
       ── utils
-            ── api - Utilities functions read/wrire file using to create RESET API
             ── auth - Utilities functions authentication
             ── balances - Including function convert response from api to model has been defined in client
             ── currency - Utilities functions convert/format curency
@@ -96,4 +96,5 @@ my-app
             ── Login - View for login page
             ── Main - View for homepage
             ── SendAssets - View for send assets page
+            ── Balance - View for balance detail page
 ```

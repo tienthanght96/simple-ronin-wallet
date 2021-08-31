@@ -8,7 +8,7 @@ enum Endpoints {
   GetAccountInfo = '/account',
   GetExchangeRates = '/exchange-rates',
   GetBalances = '/balances',
-  UpdateDetailBalance = '/balances/{balanceId}',
+  GetUpdateDetailBalance = '/balances/{balanceId}',
   ResetBalances = '/balances/reset',
 }
 
@@ -34,12 +34,15 @@ export class ApiService {
     return ApiService.instance.get<BalanceModel[]>(Endpoints.GetBalances)
   }
 
-  static sendAssets(balanceId: number, amount: number) {
+  static getBalance(balanceId: string) {
+    return ApiService.instance.get<BalanceModel>(
+      Endpoints.GetUpdateDetailBalance.replace('{balanceId}', balanceId)
+    )
+  }
+
+  static sendAssets(balanceId: string, amount: number) {
     return ApiService.instance.put<BalanceModel>(
-      Endpoints.UpdateDetailBalance.replace(
-        '{balanceId}',
-        balanceId.toString()
-      ),
+      Endpoints.GetUpdateDetailBalance.replace('{balanceId}', balanceId),
       {
         amount,
       }

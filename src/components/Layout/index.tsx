@@ -16,7 +16,7 @@ export const Layout: React.FC<Props> = ({ children, title, className }) => {
   return (
     <React.Fragment>
       <Head>
-        <title>{title ? `${title} | Robin Wallet` : 'Robin Wallet'}</title>
+        <title>{title ? `${title} | Ronin Wallet` : 'Robin Wallet'}</title>
         <link rel="shortcut icon" href="/ronin-logo.svg" />
       </Head>
       <header className={styles.header}>

@@ -68,6 +68,7 @@ export const withAuth = (WrappedComponent: NextPage) => {
         dispatch(getGlobalDataFailedAction())
       }
     }
+
     return (
       <React.Fragment>
         <WrappedComponent {...props} />

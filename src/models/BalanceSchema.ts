@@ -6,6 +6,10 @@ const BalanceSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    name: {
+      type: String,
+      required: [true, 'Balance must have a name'],
+    },
     currency: {
       type: String,
       default: 'vnd',
